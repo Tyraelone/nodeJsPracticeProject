@@ -7,6 +7,13 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
+            socket.on("data",function(data){
+              $("body").append(data+"<br/>");
+            });
+             setTimeout(function(){
+               socket.emit("spiderStart","xx");
+             },10000);
+
 
     </script>
   </head>
