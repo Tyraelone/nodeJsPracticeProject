@@ -25,16 +25,8 @@ var server = http.createServer(app);
  * 建立socketIO服务器
  */
 var io=require('socket.io')(server);
-io.on('connection',function(socket){
-  console.log('a user connected');
-  socket.on('getMessage', function(data){
-   io.emit("heh");
-  });
-  socket.on('disconnect', function(data){
-      console.log("one left");
-  });
-});
 
+io=require('../socket/socket')(io);
 
 
 require('../spider/spider')(io);

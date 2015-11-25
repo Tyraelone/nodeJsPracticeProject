@@ -10,6 +10,7 @@ var init=function(io){
             getShopData(io,encodeURI('http://gongying.99114.com/listing/'+data.name));
         });
     });
+
 }
 
 function getShopData(io,url){
@@ -20,13 +21,19 @@ function getShopData(io,url){
             }
             var $ = cheerio.load(sres.text);
             var items=[];
+            var item=require("../model/item");
             $('div.item').each(function (idx, element) {
                 var $element = $(element);
                var price = $element.find("div.price").text();
                 var name=$element.find(".J_U2IStat").text();
                 io.emit("data",{name:name,price:price});
 
+                var itemData=new item({name:name,price:price});
+                itemData.save(function(){
+                    console.log("save");
+                });
             });
+
            var newurl=$(".m-page li.next a").attr("href");
             if(newurl){
 

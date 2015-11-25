@@ -9,6 +9,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var shop99114=require('./routes/shop99114');
 
+var db=require("./db/db.js");
+
 var app = express();
 
 // view engine setup
