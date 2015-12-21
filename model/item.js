@@ -5,9 +5,9 @@ var mongoose = require("../db/db.js");
 
 
 var itemSchema = mongoose.Schema({
-    name:String,
-    price:String
+    name: String,
+    price: String
 });
-var item = mongoose.model('item',itemSchema);
+var item = mongoose.model('item', itemSchema);
 
-module.exports=item;
+module.exports = item;

@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
-      var count=0;
-            socket.on("data",function(data){
-              $("#content").append(data.name+data.price+"<br/>");
-                count++;
-                $("#count").html(count);
-            });
-
+        var socket = io();
+        var count = 0;
+        socket.on("data", function (data) {
+            $("#content").append(data.name + data.price + "<br/>");
+            count++;
+            $("#count").html(count);
+        });
 
 
     </script>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-     <span id="count" style="position: fixed;font-size: 72px;right:500px;">0</span>
-    <input id="keyword" type="text"/>
-    <button id="confirm">确定</button><br/>
-    <div id="content" style="width:500px;height: 800px;overflow: auto"></div>
-  <script>
-      $("#confirm").click(function(){
-          socket.emit("spiderStart",{name:$("#keyword").val()});
-          $("#content").html("");
-          count=0;
-      })
-  </script>
-  </body>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<p>Welcome to <%= title %></p>
+<span id="count" style="position: fixed;font-size: 72px;right:500px;">0</span>
+<input id="keyword" type="text"/>
+<button id="confirm">确定</button>
+<br/>
+
+<div id="content" style="width:500px;height: 800px;overflow: auto"></div>
+<script>
+    $("#confirm").click(function () {
+        socket.emit("spiderStart", {name: $("#keyword").val()});
+        $("#content").html("");
+        count = 0;
+    })
+</script>
+</body>
 </html>
